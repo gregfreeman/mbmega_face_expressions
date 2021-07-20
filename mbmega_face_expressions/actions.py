@@ -46,7 +46,7 @@ async def move_xyw(bot, x, y, w, t):
     """
     move robot in x, y, w space for t seconds
     x = forward
-    y = right
+    y = left
     w = rotate about z  (x cross y)
 
     robot has mecanum wheels
@@ -58,7 +58,7 @@ async def move_xyw(bot, x, y, w, t):
 
     # motor mapping
     R_motor = np.array([[+1, +1, -1, -1],   # X
-                        [+1, -1, +1, -1],   # Y
+                        [+1, -1, -1, +1],   # Y
                         [+1, +1, +1, +1]])   # w (z rotation)
 
     xyw = np.array([x, y, w])
@@ -75,6 +75,7 @@ async def move_xyw(bot, x, y, w, t):
 
 
 async def happy_action(bot):
+    log.info('happy action')
     set_rgb(bot, *COLORS['green'])
     await move_xyw(bot, 0, 0, 50, 0.3)
     await aio.sleep(0.2)
@@ -82,6 +83,7 @@ async def happy_action(bot):
 
 
 async def angry_action(bot):
+    log.info('angry action')
     set_rgb(bot, *COLORS['red'])
     await move_xyw(bot, 0, 50, 0, 0.3)
     await aio.sleep(0.2)
@@ -89,16 +91,23 @@ async def angry_action(bot):
 
 
 async def show_blue(bot):
+    log.info('show_blue')
     set_rgb(bot, *COLORS['blue'])
 
 
-async def show_yellow(bot):
+async def surprised_action(bot):
+    log.info('surprised_action')
     set_rgb(bot, *COLORS['yellow'])
+    await move_xyw(bot, 100, 0, 0, 0.3)
+    await aio.sleep(0.2)
+    await move_xyw(bot, -100, 0, 0, 0.3)
 
 
 async def show_magenta(bot):
+    log.info('show_magenta')
     set_rgb(bot, *COLORS['magenta'])
 
 
 async def led_off(bot):
+    log.info('led_off')
     set_rgb(bot, *COLORS['black'])

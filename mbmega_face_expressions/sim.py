@@ -17,15 +17,18 @@ class FakeCamera:
     def __init__(self):
         pattern = pkg_resources.resource_filename('mbmega_face_expressions', '../data/*')
         self.files = glob.glob(pattern)
+        self.idx = 0
 
     def capture(self):
         """
         capture 3 color image
         """
-        img = cv.imread(self.files[-5])
+        log.info('Image: %d' % self.idx)
+        img = cv.imread(self.files[self.idx])
+        self.idx = (self.idx + 1) % len(self.files)
+
         img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
         return img
-        #return np.zeros((1600, 2000, 3), dtype='uint8')
 
 
 def dummy(*args):
@@ -37,10 +40,10 @@ class FakeBot:
     Simulated Mega Bot Robot
     """
 
-    def DCMotor(self):
+    def DCMotor(self, *args):
         DC = namedtuple('DC', ['run'])
         return DC(run=dummy)
 
-    def RGBLed(self):
+    def RGBLed(self, *args):
         RGB = namedtuple('RGB', ['set_color'])
         return RGB(set_color=dummy)

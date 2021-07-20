@@ -1,4 +1,3 @@
-import cv2 as cv
 import logging
 import numpy as np
 log = logging.getLogger(__name__)
@@ -8,19 +7,23 @@ try:
     has_picamera = False
 except Exception:
     has_picamera = False
-    print('does not have picamera - simulation?')
+    log.warning('does not have picamera - simulation?')
 
 
 class Camera:
     """
-    module for face detection
+    module for capturing images
     """
 
     def __init__(self):
         self.camera = PiCamera()
+        self.camera.rotation = 180
+        self.camera.start_preview()
 
     def capture(self):
         """
         capture 3 color image
         """
-        return self.camera
+        output = np.empty((480, 720, 3), dtype=np.uint8)
+        self.camera.capture(output, 'rgb')
+        return output

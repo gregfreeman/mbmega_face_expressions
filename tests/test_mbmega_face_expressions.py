@@ -4,12 +4,14 @@
 
 import pytest
 import asyncio as aio
+import logging
 
 
 @pytest.mark.asyncio
-async def test_run(robot):
+async def test_run(robot, caplog):
     """
     """
-    await aio.sleep(10)
+    caplog.set_level(logging.DEBUG)
+    await aio.sleep(60)
     assert robot.state == 'Running'
     assert robot.step_count > 0 

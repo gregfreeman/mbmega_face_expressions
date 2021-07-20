@@ -17,9 +17,8 @@ class EmotionRecognizer:
         fname = pkg_resources.resource_filename('mbmega_face_expressions', '../resources/emotion_detector_model_v6_23.h5')
         print(fname)
         self.model = tf.keras.models.load_model(fname)
-        self.emotion_dict = {'Angry': 0, 'Sad': 5, 'Neutral': 4, 'Disgust': 1, 'Surprise': 6, 'Fear': 2, 'Happy': 3}
+        self.emotion_dict = {'angry': 0, 'sad': 5, 'neutral': 4, 'disgust': 1, 'surprise': 6, 'fear': 2, 'happy': 3}
         self.label_map = dict((v, k) for k, v in self.emotion_dict.items())
-        self.emotion_colors = {'Angry': 'r', 'Sad': 'b', 'Neutral': 'c', 'Disgust': 'k', 'Surprise': 'y', 'Fear': 'm', 'Happy': 'g'}
 
     def predict(self, face_image):
         """

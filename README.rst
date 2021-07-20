@@ -3,26 +3,43 @@ mbmega_face_expressions
 =======================
 
 
-
 This python package is a robot controller to entertain my kids
 
-Its intended to use with
+The robot performs a gesture with colors and motion when you show an expression on your face. 
 
-- an mBot Mega robot with MegaPi motion module
- https://www.makeblock.com/project/megapi
- 
-- Raspberry Pi
-- Raspberry Pi Camera Module
 
 
 * Free software: BSD license
-* Documentation: https://mbmega-face-expressions.readthedocs.io.
 
 
-Features
+Hardware
 --------
 
-* TODO
+- mBot Mega robot with MegaPi motion module
+    https://www.makeblock.com/project/megapi
+
+  * 4 mecanum wheels
+  * RGB LED 2x4 
+  * Line following sensor
+  * IR detection
+  * Collision contact switches
+ 
+- Raspberry Pi  
+    https://www.raspberrypi.org/
+
+- Raspberry Pi Camera Module
+    https://picamera.readthedocs.io/en/release-1.13/index.html
+
+.. image:: docs/robot.jpg
+   :width: 400
+
+ToDo
+--------
+
+- The Raspberry Pi doesn't appear to support tensorflow: need a plan B.  (works in simulation)_
+
+
+
 
 Credits
 -------
